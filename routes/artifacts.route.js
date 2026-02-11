@@ -6,6 +6,7 @@ import {
 import { toggleLike, getLikes } from "../controllers/likes.controller.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 import { authorizeRoles } from "../middleware/role.middleware.js";
+import { upload } from "../middleware/uploads.middleware.js";
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.post(
   "/",
   authMiddleware,
   authorizeRoles("ADMIN", "EDITOR"),
+  upload.single("file"),
   createArtifact,
 );
 router.get("/", authMiddleware, getAllArtifacts);

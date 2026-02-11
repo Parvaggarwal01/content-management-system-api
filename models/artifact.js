@@ -10,6 +10,7 @@ const artifactSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    message: { type: String },
     status: {
       type: String,
       enum: ["DRAFT", "PUBLISHED", "ARCHIVED"],

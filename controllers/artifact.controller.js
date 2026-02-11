@@ -6,6 +6,7 @@ import {
 export const createArtifact = async (req, res) => {
   try {
     const { title, content, status } = req.body;
+    const file = req.file?.path
     const author = req.user._id;
 
     if (!title || !content) {
@@ -18,8 +19,9 @@ export const createArtifact = async (req, res) => {
     const artifact = await createArtifactService({
       title,
       content,
-      status, 
+      status,
       author,
+      file,
     });
 
     res.status(201).json({
