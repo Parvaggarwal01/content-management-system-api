@@ -7,6 +7,7 @@ import { toggleLike, getLikes } from "../controllers/likes.controller.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 import { authorizeRoles } from "../middleware/role.middleware.js";
 import { upload } from "../middleware/uploads.middleware.js";
+import apiLimiter from "../middleware/rateLimiter.middleware.js";
 
 const router = express.Router();
 
@@ -14,12 +15,13 @@ const router = express.Router();
 // Only ADMIN and EDITOR can create artifacts
 router.post(
   "/",
+    apiLimiter,
   authMiddleware,
   authorizeRoles("ADMIN", "EDITOR"),
   upload.single("file"),
   createArtifact,
 );
-router.get("/", authMiddleware, getAllArtifacts);
+router.get("/",apiLimiter, authMiddleware, getAllArtifacts);
 
 // Like routes
 router.post("/:id/like", authMiddleware, toggleLike);
