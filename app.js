@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(morgan("dev"));
 
 app.use(cookieParser());
+app.use("/uploads", express.static("uploads"));
+
 /* Test Route */
 app.get("/", (req, res) => {
   res.status(200).json({
