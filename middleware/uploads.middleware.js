@@ -1,5 +1,5 @@
 import multer from "multer";
-import path from "path"
+import path from "path";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -10,14 +10,16 @@ const storage = multer.diskStorage({
     const uniqueName = Date.now() + "-" + Math.round(Math.random() * 1e9);
 
     cb(null, uniqueName + path.extname(file.originalname));
-  }
+  },
 });
 
-
 const fileFilter = (req, file, cb) => {
-  if(file.mimetype.startsWith("image/") || file.mimetype === "application/pdf"){
+  if (
+    file.mimetype.startsWith("image/") ||
+    file.mimetype === "application/pdf"
+  ) {
     cb(null, true);
-  }else{
+  } else {
     cb(new Error("Only images or PDFs allowed"), false);
   }
 };
@@ -26,6 +28,6 @@ export const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024
-  }
-})
+    fileSize: 5 * 1024 * 1024,
+  },
+});
