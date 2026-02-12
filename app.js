@@ -32,7 +32,3 @@ app.use("/artifacts", artifactRoutes);
 
 export default app;
 
-// app.use(cors({
-//   origin: ["https://cms-admin.vercel.app"],
-//   credentials: true
-// }));
