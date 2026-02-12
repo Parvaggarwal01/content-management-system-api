@@ -4,6 +4,7 @@ import morgan from "morgan";
 import authRoutes from "./routes/auth.route.js";
 import artifactRoutes from "./routes/artifacts.route.js";
 import cookieParser from "cookie-parser";
+import webhookRouter from "./webhook/webhook.js";
 const app = express();
 
 /* Middlewares */
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/webhooks", webhookRouter)
 app.use("/auth", authRoutes);
 app.use("/artifacts", artifactRoutes);
 export default app;
