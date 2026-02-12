@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
 app.use("/webhooks", webhookRouter)
 app.use("/auth", authRoutes);
 app.use("/artifacts", artifactRoutes);
+
 export default app;
 
 // app.use(cors({
