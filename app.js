@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth.route.js";
 import artifactRoutes from "./routes/artifacts.route.js";
 import cookieParser from "cookie-parser";
 import webhookRouter from "./webhook/webhook.js";
+import chatRouter from "./routes/chats.route.js";
 const app = express();
 
 /* Middlewares */
@@ -24,7 +25,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/webhooks", webhookRouter)
+app.use("/webhooks", webhookRouter);
+app.use("/chat", chatRouter)
 app.use("/auth", authRoutes);
 app.use("/artifacts", artifactRoutes);
 
